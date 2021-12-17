@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'RobotoMono';
+    src: url('./src/fonts/RobotoMono-Thin.ttf');
+}
+
+*{
+    font-family: 'RobotoMono', monospace;
+}
+
+body{
+    display: flex;
+    height: 100vh; /*altura completa*/
+    justify-content:  center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(to right, rgb(88, 92, 95), rgb(41, 46, 73));
+}
