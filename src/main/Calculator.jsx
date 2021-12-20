@@ -27,7 +27,32 @@ export default class Calculator extends Component{
     }
 
     setOperation(operation){
+        //Mexendo no valor de inídce 1 do array values
+        if(this.state.current === 0){
+            this.setState({operation, current: 1, clearDisplay: true})
+        
+        //Gerando o resultado da operação
+        }else{
+            const equals = operation === '='
+            const currentOperation = this.state.operation //Operação escolhida antes de digitar = 
 
+            const values = [...this.state.values]
+            try{
+                values[0] = eval(`${values[0]} ${currentOperation} ${values[1]}`)
+            }catch(e){
+                values[0] = this.state.value[0]
+            }
+            
+            values[1] = 0
+
+            this.setState({
+                displayValue: values[0],
+                operation: equals ? null : operation,
+                current: equals ? 0 : 1,
+                clearDisplay: !equals,
+                values
+            })
+        }
     }
 
     addDigit(n){
@@ -52,7 +77,8 @@ export default class Calculator extends Component{
             const newValue = parseFloat(displayValue)//converte
             const values = [...this.state.values] //pega o valor
             values[i] = newValue //coloca o valor no indice atual
-            this.setState({values})
+            this.setState({values})//adiciona o array (os valores) no estado do objeto
+            console.log(values)
         }
     }
 
